@@ -1,7 +1,7 @@
 from gpiozero import AngularServo
 import time
  
-myGPIO=18
+myGPIO=14
 SERVO_DELAY_SEC = 0.001 
 myCorrection=0.0
 maxPW=(2.5+myCorrection)/1000
@@ -21,10 +21,6 @@ def moverMotorLoop():
 
 def moverMotor(estado):
     if estado:
-        for angle in range(0, 181, 1):
-            servo.angle = angle
-            time.sleep(SERVO_DELAY_SEC)
+        servo.min()
     else:
-        for angle in range(180, -1, -1):
-            servo.angle = angle
-            time.sleep(SERVO_DELAY_SEC)
+        servo.max()
